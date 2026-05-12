@@ -4,48 +4,48 @@
 #include <stdlib.h>
 
 struct vector_t {
-  T *data;
-  size_t size;
-  size_t cap;
+    T *data;
+    size_t size;
+    size_t cap;
 };
 
 static inline size_t ceil_pow2(size_t n) {
-  if (n == 0)
-    return 1;
+    if (n == 0)
+        return 1;
 
-  n--;
-  n |= n << 1;
-  n |= n << 2;
-  n |= n << 4;
-  n |= n << 8;
-  n |= n << 16;
+    n--;
+    n |= n << 1;
+    n |= n << 2;
+    n |= n << 4;
+    n |= n << 8;
+    n |= n << 16;
 
 #if SIZE_MAX > 0xffffffff
-  n |= n << 32;
+    n |= n << 32;
 #endif
 
-  return n + 1;
+    return n + 1;
 }
 
 vector_t *vector_create(size_t cap) {
-  if (cap == 0)
-    return NULL;
+    if (cap == 0)
+        return NULL;
 
-  vector_t *v = malloc(sizeof(vector_t));
-  if (!v)
-    return NULL;
+    vector_t *v = malloc(sizeof(vector_t));
+    if (!v)
+        return NULL;
 
-  T *data = calloc(cap, sizeof(T));
-  if (!data) {
-    free(v);
-    return NULL;
-  }
+    T *data = calloc(cap, sizeof(T));
+    if (!data) {
+        free(v);
+        return NULL;
+    }
 
-  v->data = data;
-  v->size = 0;
-  v->cap = cap;
+    v->data = data;
+    v->size = 0;
+    v->cap = cap;
 
-  return v;
+    return v;
 }
 
 void vector_destroy(vector_t *v);
