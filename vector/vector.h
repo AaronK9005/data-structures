@@ -9,8 +9,8 @@ vector_t *vector_create(size_t cap);
 
 void vector_destroy(vector_t *v);
 
-void vector_push(vector_t *v, T val);
+int vector_push(vector_t *v, T val);
 
-T vector_get(vector_t *v, size_t idx);
+int vector_get(vector_t *v, size_t idx, T* dest);
 
-void vector_reserve(vector_t *v, size_t cap);
+int vector_reserve(vector_t *v, size_t cap);
